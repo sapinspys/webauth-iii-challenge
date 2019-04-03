@@ -6,6 +6,10 @@
   "repository": "https://github.com/sapinspys/webauth-iii-challenge.git",
   "author": "Guillermo Arria-Devoe <garri009@fiu.edu>",
   "license": "MIT",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
