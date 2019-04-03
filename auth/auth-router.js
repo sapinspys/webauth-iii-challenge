@@ -38,7 +38,7 @@ router.put("/login", async (req, res) => {
     if (username && password) {
       const foundUser = await Users.findBy({ username: username });
       if (foundUser && bcrypt.compareSync(password, foundUser.password)) {
-        const token = generateToken(user);
+        const token = generateToken(foundUser);
 
         res
           .status(200)
@@ -75,7 +75,7 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    roles: ["student", "ta"] // this would be a DB call
+    // department: user.department, // this would be a DB call
   };
   const options = {
     expiresIn: "1d"
