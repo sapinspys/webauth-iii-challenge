@@ -2,21 +2,27 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const secrets = require('../api/secrets');
+const secrets = require("../api/secrets");
 const Users = require("../users/users-model.js");
 
 router.post("/register", async (req, res) => {
   let credentials = req.body;
 
   try {
-    if (credentials.username && credentials.password && credentials.department) {
+    if (
+      credentials.username &&
+      credentials.password &&
+      credentials.department
+    ) {
       const hash = bcrypt.hashSync(credentials.password, 14);
       credentials.password = hash;
 
       const newUser = await Users.add(credentials);
       res.status(201).json(newUser);
     } else {
-      res.status(400).json({ error: "Please include a username, password, and department" });
+      res
+        .status(400)
+        .json({ error: "Please include a username, password, and department" });
     }
   } catch (error) {
     res.status(500).json({
@@ -34,9 +40,14 @@ router.put("/login", async (req, res) => {
       if (foundUser && bcrypt.compareSync(password, foundUser.password)) {
         const token = generateToken(user);
 
-        res.status(200).json({ message: `Welcome ${foundUser.username}. You are now logged in!`, token });
+        res
+          .status(200)
+          .json({
+            message: `Welcome ${foundUser.username}. You are now logged in!`,
+            token
+          });
       } else {
-        res.status(401).json({ message: "Invalid credentials" });
+        res.status(401).json({ message: "You shall not pass!" });
       }
     } else {
       res.status(400).json({ error: "Please include a username and password" });
@@ -64,7 +75,7 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    roles: ['student', 'ta'] // this would be a DB call
+    roles: ["student", "ta"] // this would be a DB call
   };
   const options = {
     expiresIn: "1d"

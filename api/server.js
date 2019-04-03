@@ -3,7 +3,7 @@ const helmet = require("helmet");
 
 // Router Imports:
 const authRouter = require("../auth/auth-router.js");
-const usersRouter = require('../users/users-router.js');
+const usersRouter = require("../users/users-router.js");
 
 const server = express();
 
@@ -28,9 +28,7 @@ server.use("api/users", userRouter);
 
 // Non-Existant Route MW:
 server.use(function(req, res) {
-  res
-    .status(404)
-    .send("This route does not exist");
+  res.status(404).send("This route does not exist");
 });
 
 module.exports = server;
