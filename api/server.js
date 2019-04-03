@@ -23,12 +23,12 @@ server.get("/", (req, res) => {
 });
 
 // Route Handlers:
-server.use("/api/auth", authRouters);
-server.use("api/users", userRouter);
+server.use("/api/auth", authRouter);
+server.use("/api/users", usersRouter);
 
 // Non-Existant Route MW:
 server.use(function(req, res) {
-  res.status(404).send("This route does not exist");
+  res.status(404).send("Turn back, route not found.");
 });
 
 module.exports = server;

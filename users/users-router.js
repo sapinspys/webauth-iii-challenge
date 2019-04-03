@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 const Users = require("./users-model.js");
-const restricted = require("../auth/restricted-middleware.js");
+const restricted = require("./restricted-middleware.js");
 
 // This endpoint needs to be restricted unless user provides
 // the right credentials in the headers
