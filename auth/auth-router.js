@@ -53,13 +53,13 @@ router.put("/login", async (req, res) => {
         res
           .status(401)
           .json({
-            message: "The password you entered is incorrect, please try again."
+            error: "The password you entered is incorrect, please try again."
           });
       }
     } else {
       res
         .status(400)
-        .json({ message: "Please include a username and password" });
+        .json({ error: "Please include a username and password" });
     }
   } catch (error) {
     res.status(500).json(error);

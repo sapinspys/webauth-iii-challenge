@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { login } from '../../modules/login.js'
 
@@ -69,17 +70,29 @@ export class LoginForm extends React.Component {
     this.setState({ [name]: value });
   };
 
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   this.props.login(this.state.username, this.state.password, () =>
+  //     this.props.history.push("/")
+  //   );
+
+  //   this.setState({
+  //     username: "",
+  //     password: ""
+  //   });
+  // };
+
   handleSubmit = event => {
     event.preventDefault();
-    this.props.login(this.state.username, this.state.password, () =>
-      this.props.history.push("/")
-    );
-
-    this.setState({
-      username: "",
-      password: ""
-    });
-  };
+    axios.put('http://localhost:5000/api/auth/login', this.state)
+      .then(res => {
+        console.log('LOGIN RESPONSE', res.data)
+        localStorage.setItem('token', res.data.token);
+      })
+      .catch(error => {
+        console.log('ERROR', error)
+      })
+  }
 
   handleSignUp = event => {
     event.preventDefault();

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import { Switch, Redirect} from 'react-router'
+import { Route, Link, Switch, Redirect} from 'react-router-dom'
 
 import Home from '../home'
 // import Register from '../register'
@@ -23,6 +22,7 @@ const App = () => (
   <div>
     <header>
       <Link to="/">Home</Link>
+      <Link to="/login">Login</Link>
     </header>
     
     <div>
