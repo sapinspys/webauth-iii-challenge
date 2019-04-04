@@ -16,7 +16,7 @@ class Home extends React.Component {
         <h2>List of Users</h2>
         <ul>
           {this.state.users.map((user,index) => (
-            <li key={index}>{user.username}</li>
+            <li key={index}>{user.username}, <b>{user.department}</b></li>
           ))}
         </ul>
       </ListContainer>
