@@ -54,19 +54,10 @@ export const login = (username, password, callback) => dispatch => {
     )
 }
 
-export const setUser = user => dispatch => {
-  axios.defaults.headers.common['Authorization'] = user.token
-  dispatch({ type: SET_USER, payload: user })
-}
-
-export function setAuth(token) {
-  return { type: SET_AUTH, payload: token }
-}
-
-export function logout() {
-  localStorage.clear()
-  return { type: LOGOUT_REQUESTED }
-}
+// export function logout() {
+//   localStorage.clear()
+//   return { type: LOGOUT_REQUESTED }
+// }
 
 // REDUCERS
 const initStateRegistration = {
@@ -119,13 +110,12 @@ export function loginReducer(state = initStateLogin, action) {
       }
     case LOGIN_FAIL:
       return { ...state, loggingIn: false, error: action.payload }
-    case LOGOUT_REQUESTED:
-      return {
-        loggingIn: false,
-        currentUser: null,
-        error: null,
-        userSet: false
-      }
+    // case LOGOUT_REQUESTED:
+    //   return {
+    //     loggingIn: false,
+    //     currentUser: null,
+    //     error: null,
+    //   }
     default:
       return state
   }
