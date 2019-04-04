@@ -12,8 +12,26 @@
   font-size: 2rem;
   color: #61dafb;
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+}
+
+.App-header button {
+    padding: 5px 18px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 50px;
+    border-radius: 5px;
+    background: lightgray;
+    color: black;
+    border: none;
+    box-shadow: 4px 4px 0 gray;
+    transition: 0.15s;
+}
+
+.App-header button:hover {
+  transform: scale(1.05)
 }
 
 .App-link {

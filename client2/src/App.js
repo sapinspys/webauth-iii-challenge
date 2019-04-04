@@ -12,12 +12,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          {/* <button onClick={this.logout}>Logout</button> */}
           <Link className='App-link' to="/">Home</Link>
           &nbsp;&#124;&nbsp;
           <Link className='App-link' to="/login">Login</Link>
           &nbsp;&#124;&nbsp;
           <Link className='App-link' to="/Register">Register</Link>
+          <button onClick={this.logout}>Logout</button>
         </header>
         
         <>
@@ -26,6 +26,11 @@ class App extends Component {
         </>
       </div>
     );
+  }
+
+  logout = () => {
+    localStorage.removeItem('token');
+    alert('Successfully logged out!')
   }
 }
 
