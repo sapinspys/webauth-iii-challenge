@@ -22,11 +22,11 @@ router.post("/register", async (req, res) => {
     } else {
       res
         .status(400)
-        .json({ error: "Please include a username, password, and department" });
+        .json({ message: "Please include a username, password, and department" });
     }
   } catch (error) {
     res.status(500).json({
-      error: "Username already exists or failed to connect to router"
+      message: "Username already exists or failed to connect to server"
     });
   }
 });
@@ -47,10 +47,10 @@ router.put("/login", async (req, res) => {
             token
           });
       } else {
-        res.status(401).json({ message: "You shall not pass!" });
+        res.status(401).json({ message: "The password you entered is incorrect, please try again." });
       }
     } else {
-      res.status(400).json({ error: "Please include a username and password" });
+      res.status(400).json({ message: "Please include a username and password" });
     }
   } catch (error) {
     res.status(500).json(error);
