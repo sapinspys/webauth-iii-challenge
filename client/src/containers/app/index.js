@@ -3,7 +3,7 @@ import { Route, Link } from 'react-router-dom'
 import { Switch, Redirect} from 'react-router'
 
 import Home from '../home'
-import Register from '../register'
+// import Register from '../register'
 import Login from '../login'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -28,7 +28,7 @@ const App = () => (
     <div>
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        {/* <Route path="/register" component={Register} /> */}
         <PrivateRoute path="/" component={Home} />
       </Switch>
     </div>

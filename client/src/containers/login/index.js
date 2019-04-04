@@ -15,27 +15,23 @@ const loginError = toggleFlag => {
 
 export class Login extends React.Component {
   state = {
-    inputEmail: "",
-    inputPassword: ""
+    username: "",
+    password: ""
   };
 
-  onEmailChange = event => {
-    this.setState({ inputEmail: event.target.value });
-  };
-
-  onPasswordChange = event => {
-    this.setState({ inputPassword: event.target.value });
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.login(this.state.inputEmail, this.state.inputPassword, () =>
+    this.props.login(this.state.username, this.state.password, () =>
       this.props.history.push("/")
     );
 
     this.setState({
-      inputEmail: "",
-      inputPassword: ""
+      username: "",
+      password: ""
     });
   };
 
@@ -46,46 +42,46 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <StyledLoginForm onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <h2>
-          <i className="fas fa-globe-americas fa-md o-brand" /> Mentor Login
+          Login
         </h2>
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="username">Username</label>
         <input
-          onChange={this.onEmailChange}
-          name="email"
-          type="email"
-          value={this.state.inputEmail}
+          onChange={this.handleChange}
+          name="username"
+          type="username"
+          value={this.state.username}
         />
 
         <label htmlFor="password">Password</label>
         <input
-          onChange={this.onPasswordChange}
+          onChange={this.handleChange}
           name="password"
           type="password"
-          value={this.state.inputPassword}
+          value={this.state.password}
           className="last-input"
         />
 
-        <ButtonContainer>
+        <div>
           {this.props.loggingIn ? (
-            <Spinner size="6px" color="#17BCFF" />
+            <h3>Logging in.... please wait...</h3>
           ) : (
             <button type="submit" className="login-btn">
               Login
             </button>
           )}
 
-          <button onClick={this.handleSignUp} className="signup-btn">
-            Signup
+          <button onClick={this.handleSignUp} className="register-btn">
+            Register
           </button>
-        </ButtonContainer>
+        </div>
 
         <label style={loginError(this.props.error)}>
           Error: {this.props.error}. Please try again.
         </label>
-      </StyledLoginForm>
+      </form>
     );
   }
 }
