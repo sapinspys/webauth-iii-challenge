@@ -2,6 +2,48 @@ import React from 'react'
 import axios from 'axios'
 
 // import { login } from '../../modules/login.js'
+import styled from 'styled-components'
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: 2rem;
+    margin: 15px 0;
+  }
+
+  label {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  input {
+    margin-bottom: 15px;
+    padding: 5px 0;
+    background: lightgray;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  button {
+    padding: 6px 24px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 15px 0;
+    border-radius: 5px;
+    background: lightgray;
+    color: black;
+    border: none;
+    box-shadow: 4px 4px 0 gray;
+    transition: 0.15s;
+
+    &:hover {
+      transform: scale(1.05)
+    }
+  }
+`;
 
 // INLINE COMPONENTS (FOR TOGGLING)
 const loginError = toggleFlag => {
@@ -21,7 +63,7 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <StyledForm onSubmit={this.handleSubmit}>
         <h2>
           Login
         </h2>
@@ -48,7 +90,7 @@ export class LoginForm extends React.Component {
             <h3>Logging in.... please wait...</h3>
           ) : (
             <button type="submit" className="login-btn">
-              Login
+              Submit
             </button>
           )}
 
@@ -60,7 +102,7 @@ export class LoginForm extends React.Component {
         <label style={loginError(this.props.error)}>
           Error: {this.props.error}. Please try again.
         </label>
-      </form>
+      </StyledForm>
     );
   }
   
