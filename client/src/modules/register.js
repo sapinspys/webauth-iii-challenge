@@ -1,5 +1,5 @@
 import axios from 'axios';
-import URL from '../AJAX_URL.js';
+import { URL } from '../AJAX_URL.js';
 
 // ACTION TYPES
 export const REGISTRATION_REQUESTED = 'REGISTRATION_REQUESTED'
