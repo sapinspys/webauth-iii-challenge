@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 
 // import { login } from '../../modules/login.js'
 import styled from 'styled-components'
@@ -129,12 +131,18 @@ export class LoginForm extends React.Component {
     event.preventDefault();
     axios.put('http://localhost:5000/api/auth/login', this.state)
       .then(res => {
-        console.log('LOGIN RESPONSE', res.data)
+        console.log('LOGIN SUCCESSFUL', res.data)
         localStorage.setItem('token', res.data.token);
+        this.props.history.push('/');
       })
       .catch(error => {
-        console.log('ERROR', error)
+        console.log(error)
       })
+
+    
+    this.setState({
+      password: ""
+    });
   }
 
   // handleSignUp = event => {
@@ -155,4 +163,4 @@ export class LoginForm extends React.Component {
 //   { login }
 // )(LoginForm);
 
-export default LoginForm;
+export default withRouter(LoginForm);
