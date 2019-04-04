@@ -14,7 +14,7 @@ import Users from '../users'
 const Home = props => (
   <div>
     <h1>Home</h1>
-    {Users}
+    <Users />
     <p>Count: {props.count}</p>
 
     <p>

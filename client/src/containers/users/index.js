@@ -13,16 +13,16 @@ class Users extends React.Component {
       <div>
       <h3>User List</h3>
       <ul>
-        {this.state.users.map((user,index) => {
+        {this.state.users.map((user,index) => (
           <li key={index}>{user.username}</li>
-        })}
+        ))}
       </ul>
       </div>
     )
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/auth/login')
+    axios.get('http://localhost:5000/api/users')
       .then(res => {
         this.setState({ users: res.data })
       })
