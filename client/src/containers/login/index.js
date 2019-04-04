@@ -13,7 +13,7 @@ const loginError = toggleFlag => {
   };
 };
 
-export class Login extends React.Component {
+export class LoginForm extends React.Component {
   state = {
     username: "",
     password: ""
