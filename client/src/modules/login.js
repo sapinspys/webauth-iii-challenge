@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { URL } from '../AJAX_URL.js';
+import axios from 'axios'
+import { URL } from '../AJAX_URL.js'
 
 // ACTION TYPES
 export const LOGIN_REQUESTED = 'LOGIN_REQUESTED'
@@ -24,7 +24,7 @@ export const login = (username, password, callback) => dispatch => {
     .catch(err =>
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.message
+        payload: err.data
       })
     )
 }
@@ -39,7 +39,7 @@ const initState = {
   loggingIn: false,
   currentUser: null,
   status: '',
-  error: null,
+  error: null
 }
 
 export default (state = initState, action) => {
@@ -52,7 +52,7 @@ export default (state = initState, action) => {
         loggingIn: false,
         error: null,
         currentUser: action.payload.user,
-        status: action.payload.message,
+        status: action.payload.message
       }
     case LOGIN_FAIL:
       return { ...state, loggingIn: false, error: action.payload }

@@ -19,28 +19,6 @@ export class LoginForm extends React.Component {
     password: ""
   };
 
-  handleChange = event => {
-    console.log(event.target.value);
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.login(this.state.username, this.state.password, () =>
-      this.props.history.push("/")
-    );
-
-    this.setState({
-      username: "",
-      password: ""
-    });
-  };
-
-  handleSignUp = event => {
-    event.preventDefault();
-    this.props.history.push("/signup");
-  };
-
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -52,7 +30,7 @@ export class LoginForm extends React.Component {
         <input
           onChange={this.handleChange}
           name="username"
-          type="username"
+          type="text"
           value={this.state.username}
         />
 
@@ -85,6 +63,28 @@ export class LoginForm extends React.Component {
       </form>
     );
   }
+  
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.login(this.state.username, this.state.password, () =>
+      this.props.history.push("/")
+    );
+
+    this.setState({
+      username: "",
+      password: ""
+    });
+  };
+
+  handleSignUp = event => {
+    event.preventDefault();
+    this.props.history.push("/signup");
+  };
 }
 
 const mapStateToProps = state => ({
