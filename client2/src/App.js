@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link, Redirect } from 'react-router-dom'
+import { Route, Link, Redirect, withRouter } from 'react-router-dom'
 
 import logo from './logo.svg';
 import './App.css';
@@ -31,12 +31,9 @@ class App extends Component {
   logout = () => {
     localStorage.removeItem('token');
     alert('Successfully logged out!')
+    this.props.history.push('/login');
   }
 }
-
-const Home = props => (
-  <div>Hello world</div>
-)
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -51,4 +48,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 )
 
-export default App;
+const Home = props => (
+  <div>Hello world</div>
+)
+
+export default withRouter(App);
