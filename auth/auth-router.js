@@ -46,7 +46,8 @@ router.put("/login", async (req, res) => {
 
         res.status(200).json({
           message: `Welcome ${foundUser.username}. You are now logged in!`,
-          token
+          token,
+          user: foundUser.username
         });
       } else {
         res

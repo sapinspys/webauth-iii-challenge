@@ -12,7 +12,7 @@ export const REGISTRATION_REQUESTED = 'REGISTRATION_REQUESTED'
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS'
 export const REGISTRATION_FAIL = 'REGISTRATION_FAIL'
 
-// ACTION CREATORS
+// ACTION CREATORS (ADD SET TMEOUTS HERE)
 const URL = 'http://localhost:5000'
 
 export const register = (username, department, password) => dispatch => {
@@ -70,7 +70,7 @@ export function logout() {
 
 // REDUCERS
 const initStateRegistration = {
-  registration_requested: false,
+  registering: false,
   status: '',
   error: null
 }
@@ -78,110 +78,55 @@ const initStateRegistration = {
 export function registrationReducer(state = initStateRegistration, action) {
   switch (action.type) {
     case REGISTRATION_REQUESTED:
-      return { ...state, registration_requested: true, status: '' }
+      return { ...state, registering: true, status: '' }
     case REGISTRATION_SUCCESS:
       return {
         ...state,
-        registration_requested: false,
+        registering: false,
         status: action.payload
       }
     case REGISTRATION_FAIL:
       return {
         ...state,
-        registration_requested: false,
+        registering: false,
         error: action.payload
       }
     default:
       return state
   }
 }
-const initialState = {
-  count: 0,
-  isIncrementing: false,
-  isDecrementing: false
+
+let initStateLogin = {
+  loggingIn: false,
+  currentUser: null,
+  status: '',
+  error: null,
+  token: '',
 }
 
-export default (state = initialState, action) => {
+export function loginReducer(state = initStateLogin, action) {
   switch (action.type) {
-    case INCREMENT_REQUESTED:
+    case LOGIN_REQUESTED:
+      return { ...state, loggingIn: true, status: '', token: '' }
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        isIncrementing: true
+        loggingIn: false,
+        error: null,
+        currentUser: action.payload.user,
+        status: action.payload.message,
+        token: action.payload.token
       }
-
-    case INCREMENT:
+    case LOGIN_FAIL:
+      return { ...state, loggingIn: false, error: action.payload }
+    case LOGOUT_REQUESTED:
       return {
-        ...state,
-        count: state.count + 1,
-        isIncrementing: !state.isIncrementing
+        loggingIn: false,
+        currentUser: null,
+        error: null,
+        userSet: false
       }
-
-    case DECREMENT_REQUESTED:
-      return {
-        ...state,
-        isDecrementing: true
-      }
-
-    case DECREMENT:
-      return {
-        ...state,
-        count: state.count - 1,
-        isDecrementing: !state.isDecrementing
-      }
-
     default:
       return state
-  }
-}
-
-export const increment = () => {
-  return dispatch => {
-    dispatch({
-      type: INCREMENT_REQUESTED
-    })
-
-    dispatch({
-      type: INCREMENT
-    })
-  }
-}
-
-export const incrementAsync = () => {
-  return dispatch => {
-    dispatch({
-      type: INCREMENT_REQUESTED
-    })
-
-    return setTimeout(() => {
-      dispatch({
-        type: INCREMENT
-      })
-    }, 3000)
-  }
-}
-
-export const decrement = () => {
-  return dispatch => {
-    dispatch({
-      type: DECREMENT_REQUESTED
-    })
-
-    dispatch({
-      type: DECREMENT
-    })
-  }
-}
-
-export const decrementAsync = () => {
-  return dispatch => {
-    dispatch({
-      type: DECREMENT_REQUESTED
-    })
-
-    return setTimeout(() => {
-      dispatch({
-        type: DECREMENT
-      })
-    }, 3000)
   }
 }
