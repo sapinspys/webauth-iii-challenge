@@ -18,11 +18,15 @@ router.post("/register", async (req, res) => {
       credentials.password = hash;
 
       const newUser = await Users.add(credentials);
-      res.status(201).json(newUser);
+      res
+        .status(201)
+        .json({ message: "Registration successful" });
     } else {
       res
         .status(400)
-        .json({ message: "Please include a username, password, and department" });
+        .json({
+          message: "Please include a username, password, and department"
+        });
     }
   } catch (error) {
     res.status(500).json({
@@ -40,17 +44,21 @@ router.put("/login", async (req, res) => {
       if (foundUser && bcrypt.compareSync(password, foundUser.password)) {
         const token = generateToken(foundUser);
 
-        res
-          .status(200)
-          .json({
-            message: `Welcome ${foundUser.username}. You are now logged in!`,
-            token
-          });
+        res.status(200).json({
+          message: `Welcome ${foundUser.username}. You are now logged in!`,
+          token
+        });
       } else {
-        res.status(401).json({ message: "The password you entered is incorrect, please try again." });
+        res
+          .status(401)
+          .json({
+            message: "The password you entered is incorrect, please try again."
+          });
       }
     } else {
-      res.status(400).json({ message: "Please include a username and password" });
+      res
+        .status(400)
+        .json({ message: "Please include a username and password" });
     }
   } catch (error) {
     res.status(500).json(error);
@@ -74,7 +82,7 @@ router.put("/login", async (req, res) => {
 function generateToken(user) {
   const payload = {
     subject: user.id,
-    username: user.username,
+    username: user.username
     // department: user.department, // this would be a DB call
   };
   const options = {

@@ -22,7 +22,7 @@ export const register = (username, department, password) => dispatch => {
     .then(res => {
       dispatch({
         type: REGISTRATION_SUCCESS,
-        payload: res
+        payload: res.message
       })
     })
     .catch(err => {
@@ -68,6 +68,33 @@ export function logout() {
   return { type: LOGOUT_REQUESTED }
 }
 
+// REDUCERS
+const initStateRegistration = {
+  registration_requested: false,
+  status: '',
+  error: null
+}
+
+export function registrationReducer(state = initStateRegistration, action) {
+  switch (action.type) {
+    case REGISTRATION_REQUESTED:
+      return { ...state, registration_requested: true, status: '' }
+    case REGISTRATION_SUCCESS:
+      return {
+        ...state,
+        registration_requested: false,
+        status: action.payload
+      }
+    case REGISTRATION_FAIL:
+      return {
+        ...state,
+        registration_requested: false,
+        error: action.payload
+      }
+    default:
+      return state
+  }
+}
 const initialState = {
   count: 0,
   isIncrementing: false,
