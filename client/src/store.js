@@ -8,7 +8,7 @@ export const history = createHistory()
 
 const initialState = {}
 const enhancers = []
-const middleware = [thunk, routerMiddleware(history)]
+const middleware = [thunk, routerMiddleware(history), addTokenToLocalStorage]
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -17,6 +17,13 @@ if (process.env.NODE_ENV === 'development') {
     enhancers.push(devToolsExtension())
   }
 }
+
+export const addTokenToLocalStorage = store => next => action => {
+  if(action.type === LOGIN_SUCCESS) {
+    localStorage.setItem('userToken', action.payload.token);
+  }
+  next(action);
+};
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
