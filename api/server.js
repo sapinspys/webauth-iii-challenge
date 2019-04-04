@@ -1,5 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 
 // Router Imports:
 const authRouter = require("../auth/auth-router.js");
@@ -9,6 +10,7 @@ const server = express();
 
 server.use(express.json()); // to enable json res
 server.use(helmet());
+server.use(cors());
 
 // Logger MW:
 server.use(function(req, res, next) {
