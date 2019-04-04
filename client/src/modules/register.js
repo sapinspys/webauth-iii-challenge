@@ -92,7 +92,6 @@ let initStateLogin = {
   currentUser: null,
   status: '',
   error: null,
-  token: '',
 }
 
 export function loginReducer(state = initStateLogin, action) {
@@ -106,7 +105,6 @@ export function loginReducer(state = initStateLogin, action) {
         error: null,
         currentUser: action.payload.user,
         status: action.payload.message,
-        token: action.payload.token
       }
     case LOGIN_FAIL:
       return { ...state, loggingIn: false, error: action.payload }

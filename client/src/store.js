@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './modules'
 
-import { LOGIN_SUCCESS } from './modules/auth.js'
+import { LOGIN_SUCCESS } from './modules/login'
 
 export const history = createHistory()
 
