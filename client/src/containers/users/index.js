@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import requiresAuth from '../auth/requiresAuth'
+import requiresAuth from '../../auth/requiresAuth.js'
 
 class Users extends React.Component {
   state ={
@@ -22,13 +22,7 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    const requestOptions = {
-      headers: {
-        authorization: token,
-      }
-    }
-    axios.get('http://localhost:5000/api/auth/login', requestOptions)
+    axios.get('http://localhost:5000/api/auth/login')
       .then(res => {
         this.setState({ users: res.data })
       })
@@ -38,4 +32,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default requiresAuth(Users);
