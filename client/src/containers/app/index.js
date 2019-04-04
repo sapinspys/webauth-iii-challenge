@@ -21,9 +21,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const App = () => (
   <div>
     <header>
-      <Link to="/">Home </Link>
+      <Link to="/">Home</Link>
       &nbsp;&#124;&nbsp;
-      <Link to="/login"> Login</Link>
+      <Link to="/login">Login</Link>
       {/* <button onClick={this.logout}>Logout</button> */}
     </header>
     
