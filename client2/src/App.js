@@ -6,6 +6,7 @@ import './App.css';
 
 import LoginForm from './components/LoginForm.js'
 import RegistrationForm from './components/RegistrationForm.js'
+import Home from './components/Home.js'
 
 
 class App extends Component {
@@ -49,10 +50,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       )
     }
   />
-)
-
-const Home = props => (
-  <div>Hello world</div>
 )
 
 export default withRouter(App);

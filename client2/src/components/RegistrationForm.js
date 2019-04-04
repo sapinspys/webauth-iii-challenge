@@ -1,8 +1,8 @@
-import React from 'react'
-import axios from 'axios'
-import { withRouter } from 'react-router-dom'
+import React from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export class LoginForm extends React.Component {
   state = {
@@ -14,9 +14,7 @@ export class LoginForm extends React.Component {
   render() {
     return (
       <StyledForm onSubmit={this.handleSubmit}>
-        <h2>
-          Register
-        </h2>
+        <h2>Register</h2>
 
         <label htmlFor="username">Username</label>
         <input
@@ -53,7 +51,7 @@ export class LoginForm extends React.Component {
       </StyledForm>
     );
   }
-  
+
   handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -61,19 +59,20 @@ export class LoginForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    axios.post('http://localhost:5000/api/auth/register', this.state)
+    axios
+      .post("http://localhost:5000/api/auth/register", this.state)
       .then(res => {
-        alert('Registration successful, please log in')
-        console.log(res.data.message)
-        this.props.history.push('/login');
+        alert("Registration successful, please log in");
+        console.log(res.data.message);
+        this.props.history.push("/login");
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
         // this.setState({
         //   error: error
         // });
-      })
-  }
+      });
+  };
 }
 
 // STYLED COMPONENTS
@@ -114,7 +113,7 @@ const StyledForm = styled.form`
     margin-right: 10px;
 
     &:hover {
-      transform: scale(1.05)
+      transform: scale(1.05);
     }
   }
 `;
