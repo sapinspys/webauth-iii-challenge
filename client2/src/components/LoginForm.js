@@ -60,6 +60,7 @@ export class LoginForm extends React.Component {
       })
       .catch(error => {
         console.log(error)
+        alert('Something went wrong, please try again')
         // this.setState({
         //   error: error
         // });
@@ -79,8 +80,8 @@ const StyledForm = styled.form`
   align-items: center;
 
   h2 {
-    font-size: 2rem;
-    margin: 20px 0;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
 
   label {

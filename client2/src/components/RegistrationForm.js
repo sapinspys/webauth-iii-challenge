@@ -82,8 +82,8 @@ const StyledForm = styled.form`
   align-items: center;
 
   h2 {
-    font-size: 2rem;
-    margin: 20px 0;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
 
   label {
