@@ -42,7 +42,7 @@ const initState = {
   error: null,
 }
 
-export function loginReducer(state = initState, action) {
+export default (state = initState, action) => {
   switch (action.type) {
     case LOGIN_REQUESTED:
       return { ...state, loggingIn: true, status: '', token: '' }

@@ -32,7 +32,7 @@ const initState = {
   error: null
 }
 
-export function registrationReducer(state = initState, action) {
+export default (state = initState, action) => {
   switch (action.type) {
     case REGISTRATION_REQUESTED:
       return { ...state, registering: true, status: '' }
