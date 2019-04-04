@@ -5,6 +5,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import LoginForm from './components/LoginForm.js'
+import RegistrationForm from './components/RegistrationForm.js'
+
 
 class App extends Component {
   render() {
@@ -23,6 +25,7 @@ class App extends Component {
         <>
           <PrivateRoute exact path='/' component={Home} />
           <Route path='/login' component={LoginForm} />
+          <Route path='/register' component={RegistrationForm} />
         </>
       </div>
     );

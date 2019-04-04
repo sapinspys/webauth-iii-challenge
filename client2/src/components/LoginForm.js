@@ -7,8 +7,7 @@ import styled from 'styled-components'
 export class LoginForm extends React.Component {
   state = {
     username: "",
-    password: "",
-    error: ""
+    password: ""
   };
 
   render() {
@@ -55,7 +54,7 @@ export class LoginForm extends React.Component {
     event.preventDefault();
     axios.put('http://localhost:5000/api/auth/login', this.state)
       .then(res => {
-        alert('Login successful, welcome.')
+        alert('Login successful!')
         localStorage.setItem('token', res.data.token);
         this.props.history.push('/');
       })
@@ -81,7 +80,7 @@ const StyledForm = styled.form`
 
   h2 {
     font-size: 2rem;
-    margin: 15px 0;
+    margin: 20px 0;
   }
 
   label {
