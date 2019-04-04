@@ -1,3 +1,4 @@
+// ACTION TYPES
 export const LOGIN_REQUESTED = "LOGIN_REQUESTED";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
@@ -10,6 +11,42 @@ export const LOGOUT_REQUESTED = "LOGOUT_REQUESTED";
 export const REGISTRATION_REQUESTED = "REGISTRATION_REQUESTED";
 export const REGISTRATION_SUCCESS = "REGISTRATION_SUCCESS";
 export const REGISTRATION_FAIL = "REGISTRATION_FAIL";
+
+// ACTION CREATORS
+const URL = 'http://localhost:5000';
+
+export const login = (username, password, callback) => dispatch => {
+  dispatch({ type: LOGIN_REQUESTED });
+  axios
+    .post(`${URL}/api/auth/login`, { username, password })
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res
+      });
+      if (callback && typeof callback === "function") {
+        callback(res.token);
+      }
+    })
+    .catch(err =>
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err
+      })
+    );
+};
+
+export const setUser = user => dispatch => {
+  axios.defaults.headers.common["Authorization"] = user.token;
+  dispatch({ type: SET_USER, payload: user });
+};
+export function setAuth(token) {
+  return { type: SET_AUTH, payload: token };
+}
+export function logout() {
+  localStorage.clear();
+  return { type: LOG_OUT };
+}
 
 const initialState = {
   count: 0,
